@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python Flask ReplAuth
 
 Using the ReplAuth with Flask is super easy! First we create a new Flask app: 
@@ -91,3 +92,6 @@ If you have any question please look at our support resources:
 
 - [Replit Docs](https://docs.replit.com)
 - [Ask forum](https://ask.replit.com)
+=======
+# flask-quiz-app
+>>>>>>> 64d2fd021803be2557f63ccd4ac9e864d8ff7726
