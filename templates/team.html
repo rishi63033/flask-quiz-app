@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{team}} Dashboard</title>
+</head>
+<body>
+    <h2>{{team}} Dashboard</h2>
+
+   <form method="POST" action="/add_question/{{team}}">
+    <p>Question: <input name="question" required></p>
+    <p>Option A: <input name="opt1" required></p>
+    <p>Option B: <input name="opt2" required></p>
+    <p>Option C: <input name="opt3" required></p>
+    <p>Option D: <input name="opt4" required></p>
+
+    <p>Correct Answer:
+        <select name="answer" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+    </p>
+
+    <button type="submit">Add Question</button>
+</form>
+
+    <h3>Current Questions:</h3>
+    <ol>
+      {% for q in questions %}
+        <li>{{ q.question }} — {{ q.options }}</li>
+      {% endfor %}
+    </ol>
+
+    <p><a href="/quiz/{{team}}">Start Quiz (for this team)</a></p>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

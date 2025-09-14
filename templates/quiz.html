@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{team}}'s Quiz</title>
+    <style>
+        .question-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        form {
+            margin-bottom: 15px;
+        }
+        button {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>📝 Quiz: {{team}}</h2>
+
+    <div class="question-list">
+        <ol>
+        {% for q in questions %}
+            <li>
+                <p>{{ q.question }}</p>
+                <form method="POST" action="{{ url_for('answer', team_name=team, q_index=loop.index0) }}">
+                    
+                    {% for opt in q.options %}
+                        <p>
+                            <input type="radio" name="answer" value="{{ loop.index0 }}" required> {{ opt }}
+                        </p>
+                    {% endfor %}
+
+                    <p>Answering Team:
+                        <select name="team" required>
+                            {% for t_name in teams %}
+                                {% if t_name != team %}
+                                    <option value="{{ t_name }}"
+                                        {% if t_name in q.answered_by %}
+                                            disabled
+                                        {% endif %}
+                                    >{{ t_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </p>
+
+                    <button type="submit">Submit Answer</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ol>
+    </div>
+
+    <p><a href="{{ url_for('leaderboard') }}">View Leaderboard</a></p>
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+</body>
+</html>
